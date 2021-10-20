@@ -44,7 +44,15 @@ public class Bank {
     }
 
 
-    public void showCustomers(Branch branch, boolean showTransactions) {
+    public void showCustomers(String branchName, boolean showTransactions) {
+       Optional<Branch> optionalBranch = findBranch(branchName);
+
+       if (optionalBranch.isEmpty()) {
+           System.out.println("No such branch.");
+           return;
+       }
+
+       Branch branch = optionalBranch.get();
        branch.showCustomers(showTransactions);
     }
 

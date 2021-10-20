@@ -83,15 +83,7 @@ public class Main {
    public static void showCustomers() {
        System.out.println("Enter the branch name: ");
        String branchName = inputScanner.nextLine();
-       Optional<Branch> optionalBranch = mainBank.findBranch(branchName);
 
-       if (optionalBranch.isEmpty()) {
-           System.out.println("No such branch.");
-           return ;
-       }
-
-       Branch branch = optionalBranch.get();
-
-       mainBank.showCustomers(branch, true);
+       mainBank.showCustomers(branchName, true);
    }
 }
