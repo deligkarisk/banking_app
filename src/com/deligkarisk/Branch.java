@@ -29,11 +29,8 @@ public class Branch {
     }
 
 
-    public void addCustomer(Customer newCustomer, double initialTransaction) {
+    public void addCustomer(Customer newCustomer) {
         customers.add(newCustomer);
-        int addedCustomerIndex = customers.indexOf(newCustomer);
-        Customer addedCustomer = customers.get(addedCustomerIndex);
-        addTransaction(addedCustomer, initialTransaction);
     }
 
     public void addTransaction(Customer existingCustomer, double transaction) {

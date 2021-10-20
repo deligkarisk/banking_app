@@ -63,13 +63,15 @@ public class Main {
 
        System.out.println("Enter new customer's name:");
        String newCustomerName = inputScanner.nextLine();
-       Customer newCustomer = new Customer(newCustomerName);
+
 
        System.out.println("Enter initial transaction amount:");
        Double initialTransaction = inputScanner.nextDouble();
        inputScanner.nextLine();
 
-       mainBank.addNewCustomerToBranch(newCustomer, optionalBranch.get(), initialTransaction);
+       Customer newCustomer = new Customer(newCustomerName, initialTransaction);
+
+       mainBank.addNewCustomerToBranch(newCustomer, optionalBranch.get());
    }
 
    private static void addTransaction() {

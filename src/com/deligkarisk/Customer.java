@@ -9,8 +9,9 @@ public class Customer {
     ArrayList<Double> transactions = new ArrayList<>();
 
 
-    public Customer(String name) {
+    public Customer(String name, double initialTransaction) {
         this.name = name;
+        transactions.add(initialTransaction);
     }
 
     public void addTransaction(double amount) {

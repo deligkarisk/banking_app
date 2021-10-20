@@ -20,7 +20,7 @@ public class Bank {
         branches.add(branch);
     }
 
-    public void addNewCustomerToBranch(Customer customer, Branch branch, double initialTransaction) {
+    public void addNewCustomerToBranch(Customer customer, Branch branch) {
 
         Optional<Customer> existingCustomer = branch.findCustomer(customer.getName());
         if (existingCustomer.isPresent()) {
@@ -28,7 +28,7 @@ public class Bank {
             return;
         }
 
-        branch.addCustomer(customer, initialTransaction);
+        branch.addCustomer(customer);
     }
 
     public void addTransaction(Customer customer, Branch branch, double transaction) {
