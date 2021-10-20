@@ -29,12 +29,27 @@ public class Branch {
     }
 
 
-    public void addCustomer(Customer newCustomer) {
+    public boolean addCustomer(String newCustomerName, double initialTransaction) {
+        Optional<Customer> potentialExistingCustomer = findCustomer(newCustomerName);
+        if (potentialExistingCustomer.isPresent()) {
+            return false;
+        }
+
+        Customer newCustomer = new Customer(newCustomerName, initialTransaction);
         customers.add(newCustomer);
+        return true;
     }
 
-    public void addTransaction(Customer existingCustomer, double transaction) {
-        existingCustomer.addTransaction(transaction);
+    public boolean addTransaction(String customerName, double transactionAmount) {
+        Optional<Customer> optionalCustomer = findCustomer(customerName);
+
+        if (optionalCustomer.isEmpty()) {
+            return false;
+        }
+
+        Customer existingCustomer = optionalCustomer.get();
+        existingCustomer.addTransaction(transactionAmount);
+        return true;
     }
 
 

@@ -20,19 +20,27 @@ public class Bank {
         branches.add(branch);
     }
 
-    public void addNewCustomerToBranch(Customer customer, Branch branch) {
+    public boolean addNewCustomerToBranch(String customerName, String branchName, double initialAmount) {
+        Optional<Branch> optionalBranch = findBranch(branchName);
 
-        Optional<Customer> existingCustomer = branch.findCustomer(customer.getName());
-        if (existingCustomer.isPresent()) {
-            System.out.println("Customer already exists, nothing to add.");
-            return;
+        if (optionalBranch.isEmpty()) {
+            return false;
         }
 
-        branch.addCustomer(customer);
+        Branch branch = optionalBranch.get();
+        return branch.addCustomer(customerName, initialAmount);
+
     }
 
-    public void addTransaction(Customer customer, Branch branch, double transaction) {
-        branch.addTransaction(customer, transaction);
+    public boolean addTransaction(String customerName, String branchName, double amount) {
+        Optional<Branch> optionalBranch = findBranch(branchName);
+
+        if (optionalBranch.isEmpty()) {
+            return false;
+        }
+
+        Branch branch = optionalBranch.get();
+        return branch.addTransaction(customerName, amount);
     }
 
 

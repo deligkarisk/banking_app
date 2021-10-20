@@ -54,54 +54,29 @@ public class Main {
 
        System.out.println("Enter the branch name: ");
        String branchName = inputScanner.nextLine();
-       Optional<Branch> optionalBranch = mainBank.findBranch(branchName);
-
-       if (optionalBranch.isEmpty()) {
-           System.out.println("No such branch.");
-           return ;
-       }
 
        System.out.println("Enter new customer's name:");
        String newCustomerName = inputScanner.nextLine();
-
 
        System.out.println("Enter initial transaction amount:");
        Double initialTransaction = inputScanner.nextDouble();
        inputScanner.nextLine();
 
-       Customer newCustomer = new Customer(newCustomerName, initialTransaction);
-
-       mainBank.addNewCustomerToBranch(newCustomer, optionalBranch.get());
+       mainBank.addNewCustomerToBranch(newCustomerName, branchName, initialTransaction);
    }
 
    private static void addTransaction() {
        System.out.println("Enter the branch name: ");
        String branchName = inputScanner.nextLine();
-       Optional<Branch> optionalBranch = mainBank.findBranch(branchName);
-
-       if (optionalBranch.isEmpty()) {
-           System.out.println("No such branch.");
-           return ;
-       }
-
-       Branch branch = optionalBranch.get();
 
        System.out.println("Enter customer's name:");
        String customerName = inputScanner.nextLine();
-       Optional<Customer> optionalCustomer =  branch.findCustomer(customerName);
-
-       if (optionalCustomer.isEmpty()) {
-           System.out.println("No such customer.");
-           return ;
-       }
-
-       Customer customer = optionalCustomer.get();
 
        System.out.println("Enter transaction amount:");
        double transaction = inputScanner.nextDouble();
        inputScanner.nextLine();
 
-       mainBank.addTransaction(customer, branch,transaction );
+       mainBank.addTransaction(customerName, branchName,transaction );
 
    }
 
